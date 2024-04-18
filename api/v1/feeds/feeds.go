@@ -22,6 +22,13 @@ type FeedShowModel struct {
 	Group string `json:"group,omitempty" validate:"omitempty,max=32"`
 }
 
+type FeedUpdateModel struct {
+	ID    string `json:"id"`
+	Name  string `json:"name,omitempty" validate:"omitempty,max=32"`
+	URL   string `json:"url"`
+	Group string `json:"group,omitempty" validate:"omitempty,max=32"`
+}
+
 type FeedCreateModel struct {
 	Name     string `json:"name,omitempty" validate:"omitempty,max=32"`
 	URL      string `json:"url" validate:"required,url"`
@@ -48,6 +55,7 @@ func Register(
 	feedsRouter.Get("/", endpoint.List)
 	feedsRouter.Get("/:id", endpoint.Show)
 	feedsRouter.Post("/", endpoint.Create)
+	feedsRouter.Get("/:id/update", endpoint.Update)
 	// feedsRouter.Put("/:id", endpoint.Update)
 	// feedsRouter.Delete("/:id", endpoint.Destroy)
 }
